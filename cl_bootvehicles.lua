@@ -1,14 +1,3 @@
-local allowedToUse = false
-
-Citizen.CreateThread(function()
-    TriggerServerEvent("bootvehicles.getIsAllowed")
-end)
-
-RegisterNetEvent("bootvehicles.getIsAllowed")
-AddEventHandler("bootvehicles.getIsAllowed", function(isAllowed)
-    allowedToUse = isAllowed
-end)
-
 RegisterNetEvent("receivedVehicles")
 AddEventHandler("receivedVehicles", function(vehicles)
   print("LOOPING THROUGH VEHICLES")
@@ -35,13 +24,11 @@ end)
 
 RegisterCommand("gvpos_trigger", function(source, args, raw)
   local _source = source
-  if not allowedToUse then return end
   TriggerServerEvent("triggerVehicles")
 end, false)
 
 RegisterCommand("gvpos", function(source, args, raw)
   local _source = source
-  if not allowedToUse then return end
   local ped = GetPlayerPed(-1)
   local vehicle = GetVehiclePedIsIn(ped)
   local x,y,z = table.unpack(GetEntityCoords(vehicle, false))
@@ -50,7 +37,6 @@ end, false)
 
 RegisterCommand("gvposa", function(source, args, raw)
   local _source = source
-  if not allowedToUse then return end
   local ped = GetPlayerPed(-1)
   local vehicle = GetVehiclePedIsIn(ped)
   local x,y,z = table.unpack(GetEntityCoords(vehicle, false))
