@@ -22,19 +22,26 @@ AddEventHandler("receivedVehicles", function(vehicles)
   end
 end)
 
+RegisterCommand("gvpos_trigger", function(source, args, raw)
+  if (not IsPlayerAceAllowed(source, "vMenu.OnlinePlayers.Kick")) then return end
+  TriggerServerEvent("triggerVehicles")
+end, false)
+
 RegisterCommand("gvpos", function(source, args, raw)
-    local ped = GetPlayerPed(-1)
-    local vehicle = GetVehiclePedIsIn(ped)
-    local x,y,z = table.unpack(GetEntityCoords(vehicle, false))
-    print(GetEntityModel(vehicle) .. " " ..  x .. " " .. y .. " " .. z .. " " .. GetEntityHeading(vehicle))
+  if (not IsPlayerAceAllowed(source, "vMenu.OnlinePlayers.Kick")) then return end
+  local ped = GetPlayerPed(-1)
+  local vehicle = GetVehiclePedIsIn(ped)
+  local x,y,z = table.unpack(GetEntityCoords(vehicle, false))
+  print(GetEntityModel(vehicle) .. " " ..  x .. " " .. y .. " " .. z .. " " .. GetEntityHeading(vehicle))
 end, false)
 
 RegisterCommand("gvposa", function(source, args, raw)
-    local ped = GetPlayerPed(-1)
-    local vehicle = GetVehiclePedIsIn(ped)
-    local x,y,z = table.unpack(GetEntityCoords(vehicle, false))
-    local vehicle = {GetEntityModel(vehicle), x, y, z, GetEntityHeading(vehicle)} -- We packin
-    TriggerServerEvent("appendVehicles", vehicle)
+  if (not IsPlayerAceAllowed(source, "vMenu.OnlinePlayers.Kick")) then return end
+  local ped = GetPlayerPed(-1)
+  local vehicle = GetVehiclePedIsIn(ped)
+  local x,y,z = table.unpack(GetEntityCoords(vehicle, false))
+  local vehicle = {GetEntityModel(vehicle), x, y, z, GetEntityHeading(vehicle)} -- We packin
+  TriggerServerEvent("appendVehicles", vehicle)
 end, false)
 
 AddEventHandler("playerSpawned", function(spawnInfo)

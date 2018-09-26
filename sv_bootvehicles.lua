@@ -1,7 +1,7 @@
 local hasRan = false
 
 function string:split(delimiter)
-  local result = { }
+  local result = {}
   local from  = 1
   local delim_from, delim_to = string.find( self, delimiter, from  )
   while delim_from do
@@ -12,6 +12,22 @@ function string:split(delimiter)
   table.insert( result, string.sub( self, from  ) )
   return result
 end
+
+Citizen.CreateThread(function()
+  RegisterServerEvent("triggerVehicles")
+  AddEventHandler("triggerVehicles", function()
+    local _source = source
+    local vehicles_file = io.open("sh_pos.txt", "r")
+    local vehicles = {}
+    for line in vehicles_file:lines() do
+      if line == nil or line == "" then return end
+      table.insert(vehicles, line:split(","))
+    end
+    for _, veh in ipairs(vehicles[1]) do print(veh) end
+    TriggerClientEvent("receivedVehicles", _source, vehicles)
+    print("TRIGGERED CLIENT SPAWN EVENT")
+  end)
+end)
 
 Citizen.CreateThread(function()
   RegisterServerEvent("collectVehicles")
