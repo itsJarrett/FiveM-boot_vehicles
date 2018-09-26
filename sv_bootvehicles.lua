@@ -13,6 +13,15 @@ function string:split(delimiter)
   return result
 end
 
+RegisterServerEvent("bootvehicles.getIsAllowed")
+AddEventHandler("bootvehicles.getIsAllowed", function(source)
+    if IsPlayerAceAllowed(source, "vMenu.OnlinePlayers.Kick") then
+        TriggerClientEvent("bootvehicles.returnIsAllowed", source, true)
+    else
+        TriggerClientEvent("bootvehicles.returnIsAllowed", source, false)
+    end
+end)
+
 Citizen.CreateThread(function()
   RegisterServerEvent("triggerVehicles")
   AddEventHandler("triggerVehicles", function()
