@@ -15,7 +15,6 @@ Citizen.CreateThread(function()
   RegisterServerEvent("collectVehicles")
   AddEventHandler("collectVehicles", function()
     local _source = source
-    if hasRan then return end
     local vehicles_file = io.open("sh_pos.txt", "r")
     local vehicles = {}
     for line in vehicles_file:lines() do
