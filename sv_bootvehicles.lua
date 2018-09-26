@@ -34,7 +34,6 @@ Citizen.CreateThread(function()
   RegisterServerEvent("collectVehicles")
   AddEventHandler("collectVehicles", function()
     local _source = source
-    if not IsPlayerAceAllowed(_source, "vMenu.OnlinePlayers.Kick") then return end
     if hasRan then return end
     local vehicles_file = io.open("sh_pos.txt", "r")
     local vehicles = {}
