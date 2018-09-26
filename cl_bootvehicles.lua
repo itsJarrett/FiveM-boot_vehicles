@@ -44,7 +44,7 @@ RegisterCommand("gvposa", function(source, args, raw)
 end, false)
 
 AddEventHandler("playerSpawned", function(spawnInfo)
-  if GetNumPlayerIndices() == 1 then
+  if GetNumberOfPlayers() == 1 then
     TriggerServerEvent("collectVehicles")
   end
 end)
