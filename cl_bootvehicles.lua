@@ -23,8 +23,7 @@ AddEventHandler("receivedVehicles", function(vehicles)
 end)
 
 RegisterCommand("gvpos_trigger", function(source, args, raw)
-  local _source = source
-  TriggerServerEvent("triggerVehicles")
+  TriggerServerEvent("collectVehicles")
 end, false)
 
 RegisterCommand("gvpos", function(source, args, raw)
@@ -45,5 +44,7 @@ RegisterCommand("gvposa", function(source, args, raw)
 end, false)
 
 AddEventHandler("playerSpawned", function(spawnInfo)
-  TriggerServerEvent("collectVehicles")
+  if GetNumPlayerIndices() == 1 then
+    TriggerServerEvent("collectVehicles")
+  end
 end)
