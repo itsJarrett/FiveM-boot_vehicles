@@ -31,7 +31,6 @@ Citizen.CreateThread(function()
   RegisterServerEvent("appendVehicles")
   AddEventHandler("appendVehicles", function(vehicle)
     local _source = source
-    if not IsPlayerAceAllowed(_source, "vMenu.OnlinePlayers.Kick") then return end
     local vehicles_file = io.open("sh_pos.txt", "a")
     print(vehicle[1] .. "," .. vehicle[2] .. "," .. vehicle[3] .. "," .. vehicle[4] .. "," .. vehicle[5])
     vehicles_file:write(vehicle[1] .. "," .. vehicle[2] .. "," .. vehicle[3] .. "," .. vehicle[4] .. "," .. vehicle[5], "\n")
