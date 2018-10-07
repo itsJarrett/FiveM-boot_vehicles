@@ -1,28 +1,27 @@
 local DEBUG = true -- Set this to false after setup is completed.
 
 if DEBUG then
+  RegisterCommand("gvpos_trigger", function(source, args, raw)
+    TriggerServerEvent("collectVehicles")
+  end, false)
 
-RegisterCommand("gvpos_trigger", function(source, args, raw)
-  TriggerServerEvent("collectVehicles")
-end, false)
+  RegisterCommand("gvpos", function(source, args, raw)
+    local _source = source
+    local ped = GetPlayerPed(-1)
+    local vehicle = GetVehiclePedIsIn(ped)
+    local x,y,z = table.unpack(GetEntityCoords(vehicle, false))
+    print(GetEntityModel(vehicle) .. " " ..  x .. " " .. y .. " " .. z .. " " .. GetEntityHeading(vehicle))
+  end, false)
 
-RegisterCommand("gvpos", function(source, args, raw)
-  local _source = source
-  local ped = GetPlayerPed(-1)
-  local vehicle = GetVehiclePedIsIn(ped)
-  local x,y,z = table.unpack(GetEntityCoords(vehicle, false))
-  print(GetEntityModel(vehicle) .. " " ..  x .. " " .. y .. " " .. z .. " " .. GetEntityHeading(vehicle))
-end, false)
-
-RegisterCommand("gvposa", function(source, args, raw)
-  local _source = source
-  local ped = GetPlayerPed(-1)
-  local vehicle = GetVehiclePedIsIn(ped)
-  local x,y,z = table.unpack(GetEntityCoords(vehicle, false))
-  local vehicle = {GetEntityModel(vehicle), x, y, z, GetEntityHeading(vehicle)} -- We packin
-  TriggerServerEvent("appendVehicles", vehicle)
-end, false)
-
+  RegisterCommand("gvposa", function(source, args, raw)
+    local _source = source
+    local ped = GetPlayerPed(-1)
+    local vehicle = GetVehiclePedIsIn(ped)
+    local x,y,z = table.unpack(GetEntityCoords(vehicle, false))
+    print(GetEntityModel(vehicle) .. " " ..  x .. " " .. y .. " " .. z .. " " .. GetEntityHeading(vehicle))
+    local vehicle = {GetEntityModel(vehicle), x, y, z, GetEntityHeading(vehicle)} -- We packin
+    TriggerServerEvent("appendVehicles", vehicle)
+  end, false)
 end
 
 RegisterNetEvent("receivedVehicles")
