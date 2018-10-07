@@ -1,3 +1,30 @@
+local DEBUG = true -- Set this to false after setup is completed.
+
+if DEBUG then
+
+RegisterCommand("gvpos_trigger", function(source, args, raw)
+  TriggerServerEvent("collectVehicles")
+end, false)
+
+RegisterCommand("gvpos", function(source, args, raw)
+  local _source = source
+  local ped = GetPlayerPed(-1)
+  local vehicle = GetVehiclePedIsIn(ped)
+  local x,y,z = table.unpack(GetEntityCoords(vehicle, false))
+  print(GetEntityModel(vehicle) .. " " ..  x .. " " .. y .. " " .. z .. " " .. GetEntityHeading(vehicle))
+end, false)
+
+RegisterCommand("gvposa", function(source, args, raw)
+  local _source = source
+  local ped = GetPlayerPed(-1)
+  local vehicle = GetVehiclePedIsIn(ped)
+  local x,y,z = table.unpack(GetEntityCoords(vehicle, false))
+  local vehicle = {GetEntityModel(vehicle), x, y, z, GetEntityHeading(vehicle)} -- We packin
+  TriggerServerEvent("appendVehicles", vehicle)
+end, false)
+
+end
+
 RegisterNetEvent("receivedVehicles")
 AddEventHandler("receivedVehicles", function(vehicles)
   print("LOOPING THROUGH VEHICLES")
@@ -21,27 +48,6 @@ AddEventHandler("receivedVehicles", function(vehicles)
     print(i .. " Successfully Spawned.")
   end
 end)
-
-RegisterCommand("gvpos_trigger", function(source, args, raw)
-  TriggerServerEvent("collectVehicles")
-end, false)
-
-RegisterCommand("gvpos", function(source, args, raw)
-  local _source = source
-  local ped = GetPlayerPed(-1)
-  local vehicle = GetVehiclePedIsIn(ped)
-  local x,y,z = table.unpack(GetEntityCoords(vehicle, false))
-  print(GetEntityModel(vehicle) .. " " ..  x .. " " .. y .. " " .. z .. " " .. GetEntityHeading(vehicle))
-end, false)
-
-RegisterCommand("gvposa", function(source, args, raw)
-  local _source = source
-  local ped = GetPlayerPed(-1)
-  local vehicle = GetVehiclePedIsIn(ped)
-  local x,y,z = table.unpack(GetEntityCoords(vehicle, false))
-  local vehicle = {GetEntityModel(vehicle), x, y, z, GetEntityHeading(vehicle)} -- We packin
-  TriggerServerEvent("appendVehicles", vehicle)
-end, false)
 
 AddEventHandler("playerSpawned", function(spawnInfo)
   if GetNumberOfPlayers() == 1 then
