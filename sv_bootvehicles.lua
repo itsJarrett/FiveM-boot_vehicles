@@ -17,6 +17,7 @@ Citizen.CreateThread(function()
     local _source = source
     local vehicles_file = io.open("vehicle_positions.txt", "r")
     local vehicles = {}
+    if vehicles_file == nil then return end
     for line in vehicles_file:lines() do
       if line == nil or line == "" then return end
       table.insert(vehicles, line:split(","))
