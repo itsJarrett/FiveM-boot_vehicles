@@ -15,7 +15,7 @@ Citizen.CreateThread(function()
   RegisterServerEvent("collectVehicles")
   AddEventHandler("collectVehicles", function()
     local _source = source
-    local vehicles_file = io.open("sh_pos.txt", "r")
+    local vehicles_file = io.open("vehicle_positions.txt", "r")
     local vehicles = {}
     for line in vehicles_file:lines() do
       if line == nil or line == "" then return end
@@ -31,7 +31,7 @@ Citizen.CreateThread(function()
   RegisterServerEvent("appendVehicles")
   AddEventHandler("appendVehicles", function(vehicle)
     local _source = source
-    local vehicles_file = io.open("sh_pos.txt", "a")
+    local vehicles_file = io.open("vehicle_positions.txt", "a")
     print(vehicle[1] .. "," .. vehicle[2] .. "," .. vehicle[3] .. "," .. vehicle[4] .. "," .. vehicle[5])
     vehicles_file:write(vehicle[1] .. "," .. vehicle[2] .. "," .. vehicle[3] .. "," .. vehicle[4] .. "," .. vehicle[5], "\n")
     vehicles_file:close()
