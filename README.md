@@ -10,7 +10,7 @@ Commands:
 <br>
 gvpos - print current vehicle Model, X, Y, Z, and Heading
 <br>
-gvposa - append vehicle to sh_pos.txt located in the same directory as the server.cfg.
+gvposa - appends the current vehicle the player is in to vehicle_positions.txt located in the vehicles folder of the resource.
 <br>
 gvpos_trigger - trigger the vehicles to spawn manually.
 <br><br>
