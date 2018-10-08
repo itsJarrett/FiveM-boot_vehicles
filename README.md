@@ -13,3 +13,13 @@ gvpos - print current vehicle Model, X, Y, Z, and Heading
 gvposa - append vehicle to sh_pos.txt located in the same directory as the server.cfg.
 <br>
 gvpos_trigger - trigger the vehicles to spawn manually.
+<br><br>
+Included is a couple example vehicle sets, you can add and remove these files in the resource meta
+<br><br>
+For developers:
+<br>
+You can add a boot_vehicles list as a file in your own resource.
+<br>
+Simply add `boot_vehicle_file 'filename.txt'` to your resource meta.
+<br>
+More files can also be added directly to the main resource instead of via an external resource.
