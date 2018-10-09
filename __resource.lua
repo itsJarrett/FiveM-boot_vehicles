@@ -11,7 +11,8 @@ boot_vehicle_file 'vehicles/merryweather.txt'
 boot_vehicle_file 'vehicles/noose.txt'
 
 server_scripts {
-  'sv_bootvehicles.lua'
+  'sv_bootvehicles.lua',
+  'version.lua'
 }
 client_scripts {
   'cl_bootvehicles.lua'
