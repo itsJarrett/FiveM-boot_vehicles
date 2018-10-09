@@ -12,7 +12,7 @@ function CheckFrameworkVersion()
         if text == version then
             print(" ")
             print("---------- BOOT VEHICLES VERSION ----------")
-            print("Boot Vehicles Script Updated and ready to go!")
+            print("Boot Vehicles Script is up to date and ready to go!")
             print("https://github.com/itsJarrett/FiveM-boot_vehicles")
             print("--------------------------------")
             print(" ")
