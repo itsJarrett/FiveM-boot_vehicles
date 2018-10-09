@@ -64,8 +64,8 @@ Citizen.CreateThread(function()
   AddEventHandler("appendVehicles", function(vehicle)
     local _source = source
     local vehicles_file = LoadResourceFile(GetCurrentResourceName(), "vehicle_positions.txt")
-    log(vehicle[1] .. "," .. vehicle[2] .. "," .. vehicle[3] .. "," .. vehicle[4] .. "," .. vehicle[5])
-    vehicles_file = vehicles_file .. vehicle[1] .. "," .. vehicle[2] .. "," .. vehicle[3] .. "," .. vehicle[4] .. "," .. vehicle[5] .. "\n"
+    log(vehicle[1] .. "," .. vehicle[2] .. "," .. vehicle[3] .. "," .. vehicle[4] .. "," .. vehicle[5] .. "," .. vehicle[6][1] .. "," .. vehicle[6][2] .. "," .. vehicle[6][3] .. "," .. vehicle[6][4] .. "," .. vehicle[6][5] .. "," .. vehicle[6][6] .. "," .. vehicle[6][7] .. "," .. vehicle[6][8] .. "," .. vehicle[6][9] .. "," .. vehicle[6][10] .. "," .. vehicle[6][11] .. "," .. vehicle[6][12] .. "," .. vehicle[6][13] .. "," .. vehicle[6][14])
+    vehicles_file = vehicles_file .. vehicle[1] .. "," .. vehicle[2] .. "," .. vehicle[3] .. "," .. vehicle[4] .. "," .. vehicle[5] .. "," .. vehicle[6][1] .. "," .. vehicle[6][2] .. "," .. vehicle[6][3] .. "," .. vehicle[6][4] .. "," .. vehicle[6][5] .. "," .. vehicle[6][6] .. "," .. vehicle[6][7] .. "," .. vehicle[6][8] .. "," .. vehicle[6][9] .. "," .. vehicle[6][10] .. "," .. vehicle[6][11] .. "," .. vehicle[6][12] .. "," .. vehicle[6][13] .. "," .. vehicle[6][14] .. "\n"
     SaveResourceFile(GetCurrentResourceName(), "vehicle_positions.txt", vehicles_file, -1)
   end)
 end)

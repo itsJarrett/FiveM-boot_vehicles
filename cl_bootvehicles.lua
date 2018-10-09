@@ -24,9 +24,17 @@ if DEBUG then
     local ped = GetPlayerPed(-1)
     local vehicle = GetVehiclePedIsIn(ped)
     local x,y,z = table.unpack(GetEntityCoords(vehicle, false))
+    local extras = {}
+    for i = 1, 14 do -- Max Extras is 14
+      if IsVehicleExtraTurnedOn(vehicle, i) then
+        table.insert(extras, 0)
+      else
+        table.insert(extras, 1)
+      end
+    end
     log(GetEntityModel(vehicle) .. " " ..  x .. " " .. y .. " " .. z .. " " .. GetEntityHeading(vehicle))
-    local vehicle = {GetEntityModel(vehicle), x, y, z, GetEntityHeading(vehicle)} -- We packin
-    TriggerServerEvent("appendVehicles", vehicle)
+    local vehicle_append = {GetEntityModel(vehicle), x, y, z, GetEntityHeading(vehicle), extras} -- We packin
+    TriggerServerEvent("appendVehicles", vehicle_append)
   end, false)
 end
 
@@ -44,6 +52,18 @@ AddEventHandler("receivedVehicles", function(vehicleSets)
             end
             local spawnedVehicle = CreateVehicle(model, tonumber(vehicle[2]), tonumber(vehicle[3]), tonumber(vehicle[4]), tonumber(vehicle[5]), true, false)
             local id = VehToNet(spawnedVehicle)
+            for i = 6, 20 do -- Max Extras is 14
+              local extra = tonumber(vehicle[i])
+              if extra ~= nil then
+                local q = i - 6 -- Cool math trix. (Stay in school kids)
+                if extra == 1 then
+                  SetVehicleExtra(spawnedVehicle, q, 1)
+                end
+                if extra == 0 then
+                  SetVehicleExtra(spawnedVehicle, q, 0)
+                end
+              end
+            end
             SetVehicleOnGroundProperly(spawnedVehicle)
             SetVehicleNeedsToBeHotwired(spawnedVehicle, false)
             SetNetworkIdExistsOnAllMachines(id, true)
