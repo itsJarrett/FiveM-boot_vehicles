@@ -44,7 +44,7 @@ AddEventHandler("receivedVehicles", function(vehicleSets)
     Citizen.Wait(0)
     for vehicleSetId, vehicles in next, vehicleSets do
         log("Spawning vehicle set " .. vehicleSetId .. " (" .. #vehicles .. " entries)")
-        for i, vehicle in ipairs(vehicles) do
+        for _, vehicle in ipairs(vehicles) do
             local model = tonumber(vehicle[1])
             RequestModel(model)
             while not HasModelLoaded(model) do
