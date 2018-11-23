@@ -25,6 +25,7 @@ if DEBUG then
     local vehicle = GetVehiclePedIsIn(ped)
     local x,y,z = table.unpack(GetEntityCoords(vehicle, false))
     local extras = {}
+    local plate = GetVehicleNumberPlateText(vehicle)
     for i = 1, 14 do -- Max Extras is 14
       if IsVehicleExtraTurnedOn(vehicle, i) then
         table.insert(extras, 0)
@@ -33,7 +34,7 @@ if DEBUG then
       end
     end
     log(GetEntityModel(vehicle) .. " " ..  x .. " " .. y .. " " .. z .. " " .. GetEntityHeading(vehicle))
-    local vehicle_append = {GetEntityModel(vehicle), x, y, z, GetEntityHeading(vehicle), extras} -- We packin
+    local vehicle_append = {GetEntityModel(vehicle), x, y, z, GetEntityHeading(vehicle), extras, plate} -- We packin
     TriggerServerEvent("appendVehicles", vehicle_append)
   end, false)
 end
@@ -64,6 +65,7 @@ AddEventHandler("receivedVehicles", function(vehicleSets)
                 end
               end
             end
+            SetVehicleNumberPlateText(spawnedVehicle, vehicle[7])
             SetVehicleOnGroundProperly(spawnedVehicle)
             SetVehicleNeedsToBeHotwired(spawnedVehicle, false)
             SetNetworkIdExistsOnAllMachines(id, true)
