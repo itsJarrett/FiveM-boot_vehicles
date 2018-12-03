@@ -52,7 +52,7 @@ AddEventHandler("receivedVehicles", function(vehicleSets)
                 Citizen.Wait(10)
             end
             local spawnedVehicle = CreateVehicle(model, tonumber(vehicle[2]), tonumber(vehicle[3]), tonumber(vehicle[4]), tonumber(vehicle[5]), true, false)
-            local id = VehToNet(spawnedVehicle)
+            local id = NetworkGetNetworkIdFromEntity(spawnedVehicle)
             for i = 6, 20 do -- Max Extras is 14
               local extra = tonumber(vehicle[i])
               if extra ~= nil then
@@ -69,7 +69,7 @@ AddEventHandler("receivedVehicles", function(vehicleSets)
             SetVehicleNeedsToBeHotwired(spawnedVehicle, false)
             SetNetworkIdExistsOnAllMachines(id, true)
             SetNetworkIdCanMigrate(id, true)
-            SetEntityAsMissionEntity(spawnedVehicle, true, false)
+            SetVehicleHasBeenOwnedByPlayer(spawnedvehicle, true)
             SetModelAsNoLongerNeeded(model)
             log(("Successfully spawned %s, %s #%s"):format(GetLabelText(GetDisplayNameFromVehicleModel(model)), model, i))
         end
