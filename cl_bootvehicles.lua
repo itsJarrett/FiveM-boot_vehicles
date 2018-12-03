@@ -59,8 +59,7 @@ AddEventHandler("receivedVehicles", function(vehicleSets)
                 local q = i - 6 -- Cool math trix. (Stay in school kids)
                 if extra == 1 then
                   SetVehicleExtra(spawnedVehicle, q, 1)
-                end
-                if extra == 0 then
+                elseif extra == 0 then
                   SetVehicleExtra(spawnedVehicle, q, 0)
                 end
               end

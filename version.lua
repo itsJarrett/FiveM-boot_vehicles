@@ -9,7 +9,7 @@ end)
 
 function CheckFrameworkVersion()
     PerformHttpRequest("https://raw.githubusercontent.com/itsJarrett/FiveM-boot_vehicles/master/version.txt", function(err, text, headers)
-        if text == version then
+        if string.match(text, version) then
             print(" ")
             print("---------- BOOT VEHICLES VERSION ----------")
             print("Boot Vehicles Script is up to date and ready to go!")
