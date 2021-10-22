@@ -50,6 +50,7 @@ AddEventHandler("receivedVehicles", function(vehicleSets)
 				local chance = math.random(0,1) -- ##GameCanPlay there is a 50% chance to spawn a vehicle in. Change the second number to make the percentage differ
 				if chance == 0 then
 					local model = tonumber(vehicle[1])
+					local livery = tonumber(vehicle[20])
 					RequestModel(model)
 					while not HasModelLoaded(model) do
 						Citizen.Wait(10)
@@ -68,7 +69,7 @@ AddEventHandler("receivedVehicles", function(vehicleSets)
 					  end
 					end
 					SetVehicleDirtLevel(spawnedVehicle, 0) -- ##GameCanPlay To stop vehicles from spawning in dirty 
-					SetVehicleLivery(spawnedVehicle, vehicle[5]) -- ##GameCanPlay Livery Update
+					SetVehicleLivery(spawnedVehicle, livery) -- ##GameCanPlay Livery Update
 					SetVehicleOnGroundProperly(spawnedVehicle)
 					SetVehicleNeedsToBeHotwired(spawnedVehicle, false)
 					SetNetworkIdExistsOnAllMachines(id, true)
