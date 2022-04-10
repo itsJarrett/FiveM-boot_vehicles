@@ -1,4 +1,5 @@
 local DEBUG = true -- Set this to false after setup is completed.
+local firstSpawn = true
 
 local function log(text)
     if DEBUG then
@@ -83,7 +84,10 @@ AddEventHandler("receivedVehicles", function(vehicleSets)
 end)
 
 AddEventHandler("playerSpawned", function(spawnInfo)
-  if GetNumberOfPlayers() == 1 then
+  if firstSpawn and GetNumberOfPlayers() == 1 then
     TriggerServerEvent("collectVehicles")
+			
+    -- do not trigger on respawn after death
+    firstSpawn = false
   end
 end)
